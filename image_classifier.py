@@ -1,6 +1,5 @@
 import cv2 as cv
 import numpy as np 
-import matplotlib.pyplot as plt
 from tensorflow.keras import datasets, layers, models
 
 (training_images, training_labels), (testing_images, testing_labels) = datasets.cifar10.load_data()
@@ -17,7 +16,9 @@ testing_labels= testing_labels[:20000]
 
 models = models.load_model('image.h5')
 
-img = cv.imread('plane.jpeg')
+filename = input("Enter Your Filename : ")
+
+img = cv.imread(f'{filename}.jpeg')
 img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
 
 predictions = models.predict(np.array([img])/255)
